@@ -3,7 +3,12 @@
       <h1>Каталог</h1>
       <ul>
         <li v-for="good in goods" :key="good.id">
-          <router-link exact :to="{path: '/item/' + good.id, query: {title: good.title, description: good.description, price: good.price}}">{{good.title}}</router-link>
+          <router-link exact :to="{path: '/item/' + good.id,
+          query: {
+            title: good.title,
+            description: good.description,
+            price: good.price
+            }}">{{good.title}}</router-link>
          </li>
       </ul>
   </div>
@@ -16,8 +21,8 @@ export default {
       title: '',
       description: '',
       price: '',
-      goods: '',
-      id: ''
+      id: '',
+      goods: []
     }
   },
   methods: {
@@ -33,4 +38,3 @@ export default {
   }
 }
 </script>
-

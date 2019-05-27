@@ -3,10 +3,6 @@
       <h1 class="main__title" style="text-align: center">Добавить товар</h1>
         <div class="container">
           <div class="row">
-            <!-- <div class="form-group w-100">
-              <label for="id">id {{id}}</label>
-              <input type="id" id="id" class="form-control" v-model="id">
-            </div> -->
             <div class="form-group w-100">
               <label for="title">Заголовок</label>
               <input type="text" id="title" class="form-control" v-model="title">
@@ -36,40 +32,46 @@
 export default {
   data() {
       return {
-        title: '',
-        description: '',
-        price: '',
         goods: '',
-        id: ''
+
+        id: this.$route.query.id,
+        title: this.$route.query.title,
+        description: this.$route.query.description,
+        price: this.$route.query.price
       }
   },
   methods: {
     onSave() {
-      let good = {
-        title: this.title,
-        description: this.description,
-        price: this.price,
-        id: this.id
-      };
+    let good = {
+      title: this.title,
+      description: this.description,
+      price: this.price,
+      id: this.id
+    };
+
+    this.$http.get(`http://localhost:3000/goods/${this.id}`)
+    .then(res => res.json())
+    .then(res => (this.goods = res))
+    console.log(good.id);
+
+    if (good.id === undefined) {
       this.$http
-        .post("http://localhost:3000/goods", good)
+        .post ("http://localhost:3000/goods", good)
         .then(res => res.json())
         .then(res => console.log(res));
-    },
-    onLoad() {
+    } else {
       this.$http
-        .get("http://localhost:3000/goods")
+        .patch (`http://localhost:3000/goods/${this.id}`, good)
         .then(res => res.json())
-        .then(res => (this.goods = res));
+        .then(res => console.log(res));
     }
   },
-  computed: {
-    // onLoading() {
-    //   this.$http
-    //     .get("http://localhost:3000/goods")
-    //     .then(res => res.json())
-    //     .then(res => (this.goods = res));
-    // }
+  onLoad() {
+    this.$http
+      .get("http://localhost:3000/goods")
+      .then(res => res.json())
+      .then(res => (this.goods = res));
+    }
   }
 }
 </script>
