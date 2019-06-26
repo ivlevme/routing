@@ -1,12 +1,16 @@
 <template>
-  <div>
-      <h1>Элемент с id {{id}}</h1>
-      <h2>Название товара - {{title}} </h2>
-      <p>Какое-то описание товара {{description}}</p>
-      <p>Цена товара - {{price}} </p>
-      <button class="btn btn-success" type="button" @click="onLinkCatalog">Назад</button>
-      <button class="btn btn-danger" type="button" name="button" @click="delItem(id)">Удалить</button>
-      <button class="btn btn-warning" type="button" name="button" @click="editItem(id)">Редактировать</button>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Элемент с id {{id}}</h1>
+        <h2>Название товара - {{title}} </h2>
+        <p>Какое-то описание товара {{description}}</p>
+        <p>Цена товара - {{price}} </p>
+        <button class="btn btn-success" type="button" @click="onLinkCatalog">Назад</button>
+        <button class="btn btn-danger" type="button" name="button" @click="delItem(id)">Удалить</button>
+        <button class="btn btn-warning" type="button" name="button" @click="editItem(id)">Редактировать</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -33,3 +37,9 @@ export default {
   }
 }
 </script>
+
+<style media="screen">
+  .col {
+    text-align: center;
+  }
+</style>

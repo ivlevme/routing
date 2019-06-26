@@ -75,3 +75,9 @@ export default {
   }
 }
 </script>
+
+<style media="screen">
+  .btn-primary {
+    margin-left: 20px;
+  }
+</style>
